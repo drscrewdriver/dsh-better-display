@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Answer-bubble token alignment (fork.5): the bubble plate now uses the official answer-panel token `--dsw-alias-bg-layer-1` (the skin's translucent layer color, e.g. `#121f43e6` in the navy skin) instead of the opaque `--dsw-alias-bg-module-platform`, so the bubble matches the host look and stays semi-transparent over skinned wallpapers; glass mode only adds the frosted blur.
 - Client bundle id alignment (fork.4): the client bundle registered under the hardcoded `dsh-better-display` module id while the plugin's profile entry id is the scoped package name; the bundle now registers under `@drscrewdriver/dsh-better-display` so the host can mount it.
 - Windows build fix (fork.3): the vendored `tools/client-build.js` server bundling predicate accepted only POSIX-style paths, so on Windows the server entry shipped with dangling `./skill-roots.ts` / `./skill-status.ts` imports and never activated. Relative modules are now inlined on every platform.
 - Message bubbles: each final answer renders in a rounded bubble separating it from the page background, so text no longer sits directly on skinned hosts' wallpapers. Glass mode mixes the same tokens translucently, mirroring the user bubble's frosted treatment. A new 消息气泡 / Message bubbles switch in settings restores the flat layout when off (persisted as `bubbles` on `dsh.reader.v1`, default on).
