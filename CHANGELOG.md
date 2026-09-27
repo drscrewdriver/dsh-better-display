@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Windows build fix (fork.3): the vendored `tools/client-build.js` server bundling predicate accepted only POSIX-style paths, so on Windows the server entry shipped with dangling `./skill-roots.ts` / `./skill-status.ts` imports and never activated. Relative modules are now inlined on every platform.
 - Message bubbles: each final answer renders in a rounded bubble separating it from the page background, so text no longer sits directly on skinned hosts' wallpapers. Glass mode mixes the same tokens translucently, mirroring the user bubble's frosted treatment. A new 消息气泡 / Message bubbles switch in settings restores the flat layout when off (persisted as `bubbles` on `dsh.reader.v1`, default on).
 
 ## 0.3.3 — 2026-09-24
