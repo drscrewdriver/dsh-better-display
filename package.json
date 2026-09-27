@@ -1,7 +1,7 @@
 {
-  "name": "dsh-better-display",
-  "version": "0.3.3",
-  "description": "A calmer reading view for DeepSeek Harness: native process details, live reasoning, and clean final answers.",
+  "name": "@drscrewdriver/dsh-better-display",
+  "version": "0.3.3-fork.1",
+  "description": "A calmer reading view for DeepSeek Harness: native process details, live reasoning, and clean final answers. Fork adds answer message bubbles with a settings switch.",
   "type": "module",
   "license": "MIT",
   "main": "lib/dsh-better-display.js",
@@ -111,11 +111,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aa2246740/dsh-better-display.git"
+    "url": "git+https://github.com/drscrewdriver/dsh-better-display.git"
   },
-  "homepage": "https://github.com/aa2246740/dsh-better-display#readme",
+  "homepage": "https://github.com/drscrewdriver/dsh-better-display#readme",
   "bugs": {
-    "url": "https://github.com/aa2246740/dsh-better-display/issues"
+    "url": "https://github.com/drscrewdriver/dsh-better-display/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "deepseek-harness",

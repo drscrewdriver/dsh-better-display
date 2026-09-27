@@ -16,7 +16,7 @@ declare module '@deepseek-ai/cordis' {
   }
 }
 
-export const name = 'dsh-better-display';
+export const name = '@drscrewdriver/dsh-better-display';
 export const inject = ['webServer'];
 
 function writeJson(res: ServerResponse, status: number, body: unknown): void {
