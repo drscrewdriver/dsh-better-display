@@ -21,7 +21,10 @@ const adapter = existsSync(vendored) ? vendored : resolveHarnessAdapter();
 if (!existsSync(adapter)) throw new Error('externalClientBundle adapter is missing.');
 const { externalClientBundle } = await import(pathToFileURL(adapter).href);
 
-const bundle = externalClientBundle('dsh-better-display', ['src/dsh-better-display.ts'], {
+// The client bundle registers under this id via window.__ModuleLoader__; it
+// must equal the plugin's profile entry id (the scoped package name) so the
+// host can mount it.
+const bundle = externalClientBundle('@drscrewdriver/dsh-better-display', ['src/dsh-better-display.ts'], {
   clientEntry: 'src/client/index.tsx',
 }) as UserConfig[];
 
