@@ -22,7 +22,7 @@ import { landTurn, scrollerOf } from './conversation-scroll.js';
 import { mergeTimelineItems, type TimelineItem } from './timeline.js';
 import { presentLiveTurn, segmentLiveTurn } from './live-turn.js';
 import type { LiveStep } from './live-turn.js';
-import { frostedGlassOf } from './fold-intensity.js';
+import { bubblesOf, frostedGlassOf } from './fold-intensity.js';
 import { ChoreographedFlow, useFlowChat } from './ChoreographedFlow.js';
 import { ClosedProcessSummary } from './ClosedProcessSummary.js';
 import { StickyLane } from './StickyLane.js';
@@ -650,6 +650,7 @@ export function Reader(props: ReaderProps) {
     if (restored) props.actions.resetExpanded();
   }, [autoFold, props.actions]);
   const frostedGlass = frostedGlassOf(prefsSnap);
+  const bubbles = bubblesOf(prefsSnap);
   const streamMotion = useMemo(() => ({ enabled: motion, activatedAt: activatedAt.current }), [motion]);
   const groups = useMemo(() => groupNodes(order, key => nodes.get(key)), [order, nodes, timeline]);
   const isAwaitingModel = useMemo(() => {
@@ -815,7 +816,7 @@ export function Reader(props: ReaderProps) {
 
   // ChatView publishes data-chat-flow="" on its column. Skins treat a
   // scrollport without that hook as inspect-only and hide [data-composer-seat].
-  return <StreamMotionContext.Provider value={streamMotion}><div ref={root} className={css.root} data-reader-build="0.3.3" data-dsh-better-display="0.3.3" data-reader-wait-clock-version="input-v1" data-reader-wait-start={waitAnchor.time ?? undefined} data-motion={motion ? 'on' : 'off'} data-reader-glass={frostedGlass || undefined} data-reader-auto-fold={autoFold ? 'on' : 'off'}>
+  return <StreamMotionContext.Provider value={streamMotion}><div ref={root} className={css.root} data-reader-build="0.3.3" data-dsh-better-display="0.3.3" data-reader-wait-clock-version="input-v1" data-reader-wait-start={waitAnchor.time ?? undefined} data-motion={motion ? 'on' : 'off'} data-reader-glass={frostedGlass || undefined} data-reader-bubbles={bubbles ? 'on' : 'off'} data-reader-auto-fold={autoFold ? 'on' : 'off'}>
     <TimelineRail items={timelineItems} activeTurn={activeTurn} busyTurn={busyTurn} onNavigate={onNavigateTurn} />
     <div className={css.column} data-chat-flow="">
       <StickyLane kind="toolbar" className={css.toolbar}>

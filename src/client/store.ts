@@ -22,6 +22,8 @@ export interface ReaderState {
   foldIntensity: FoldIntensity;
   /** Translucent frosted chrome. Default off so opaque main chrome stays. */
   frostedGlass: boolean;
+  /** Rounded answer bubbles. Default on; off lays answers flat on the page. */
+  bubbles: boolean;
   /** Derived from foldIntensity === 2; kept for older #14 snapshots. */
   processOnly: boolean;
 }
@@ -33,6 +35,7 @@ type ReaderActions = {
   setDeliverableOpenMode: (draft: ReaderState, value: DeliverableOpenMode) => void;
   setFoldIntensity: (draft: ReaderState, value: FoldIntensity) => void;
   setFrostedGlass: (draft: ReaderState, value: boolean) => void;
+  setBubbles: (draft: ReaderState, value: boolean) => void;
 };
 
 function applyFoldIntensity(draft: ReaderState, value: FoldIntensity): void {
@@ -50,6 +53,7 @@ export function createReaderStore(): EngineStoreHandle<ReaderState, ReaderAction
       deliverableOpenMode: 'external',
       foldIntensity: FOLD_INTENSITY_DEFAULT,
       frostedGlass: false,
+      bubbles: true,
       processOnly: false,
     }),
     persist: 'dsh.reader.v1',
@@ -65,6 +69,7 @@ export function createReaderStore(): EngineStoreHandle<ReaderState, ReaderAction
       setDeliverableOpenMode: (draft, value: DeliverableOpenMode) => { draft.deliverableOpenMode = value; },
       setFoldIntensity: (draft, value: FoldIntensity) => { applyFoldIntensity(draft, value); },
       setFrostedGlass: (draft, value: boolean) => { draft.frostedGlass = value; },
+      setBubbles: (draft, value: boolean) => { draft.bubbles = value; },
     },
   });
 }

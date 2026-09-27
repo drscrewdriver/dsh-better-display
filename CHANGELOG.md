@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Message bubbles: each final answer renders in a rounded bubble separating it from the page background, so text no longer sits directly on skinned hosts' wallpapers. Glass mode mixes the same tokens translucently, mirroring the user bubble's frosted treatment. A new 消息气泡 / Message bubbles switch in settings restores the flat layout when off (persisted as `bubbles` on `dsh.reader.v1`, default on).
+
 ## 0.3.3 — 2026-09-24
 
 - Accept Harness `0.1.7-rc.2` (`dsh-v0.1.7-rc.2`, `477b4f420553e8a52c2fbccc464d7561b239c443`). Peer range stays `>=0.1.7-rc.1 <0.1.8`.

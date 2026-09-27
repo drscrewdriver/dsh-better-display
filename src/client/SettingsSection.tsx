@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
-import { foldIntensityOf, frostedGlassOf, type FoldIntensity } from './fold-intensity.js';
+import { bubblesOf, foldIntensityOf, frostedGlassOf, type FoldIntensity } from './fold-intensity.js';
 import { deliverableOpenModeOf, type DeliverableOpenMode } from './open-file.js';
 import { settingsCopyFor, type SettingsCopy, type SettingsCopyKey } from './settings-copy.js';
 import { CONVENTIONAL_SKILL_ROOTS, detectGenerativeMcpappsSkill, shortestInstallCommand, type SkillStatusProbe, type SkillStatusSnapshot } from './skill-status.js';
@@ -8,6 +8,7 @@ import css from './SettingsSection.module.css';
 export interface ReaderPrefsSnapshot {
   deliverableOpenMode?: DeliverableOpenMode;
   frostedGlass?: boolean;
+  bubbles?: boolean;
   foldIntensity?: FoldIntensity;
   autoFold?: boolean;
   processOnly?: boolean;
@@ -19,6 +20,7 @@ export interface OpenPrefs {
   actions: {
     setDeliverableOpenMode: (value: DeliverableOpenMode) => void;
     setFrostedGlass: (value: boolean) => void;
+    setBubbles?: (value: boolean) => void;
     setFoldIntensity?: (value: FoldIntensity) => void;
     setAutoFold?: (value: boolean) => void;
   };
@@ -64,6 +66,7 @@ export function SettingsSection(props: SettingsProps) {
   );
   const mode = deliverableOpenModeOf(snap.deliverableOpenMode);
   const glass = frostedGlassOf(snap);
+  const bubbles = bubblesOf(snap);
   const autoFold = snap.autoFold !== false && snap.foldIntensity !== 0;
   const setMode = (value: DeliverableOpenMode) => {
     props.prefs.actions.setDeliverableOpenMode(value);
@@ -122,6 +125,22 @@ export function SettingsSection(props: SettingsProps) {
           data-on={glass || undefined}
           data-better-display-glass={glass ? 'on' : 'off'}
           onClick={() => { props.prefs.actions.setFrostedGlass(!glass); }}
+        />
+      </div>
+
+      <div className={css.row}>
+        <div className={css.rowText}>
+          <div className={css.title}>{text(props, copy, 'bubbleTitle')}</div>
+          <div className={css.desc}>{text(props, copy, 'bubbleDescription')}</div>
+        </div>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={bubbles}
+          className={css.switch}
+          data-on={bubbles || undefined}
+          data-better-display-bubbles={bubbles ? 'on' : 'off'}
+          onClick={() => { props.prefs.actions.setBubbles?.(!bubbles); }}
         />
       </div>
 

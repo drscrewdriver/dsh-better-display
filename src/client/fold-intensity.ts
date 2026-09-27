@@ -19,6 +19,14 @@ export function frostedGlassOf(state: unknown): boolean {
   return state === true;
 }
 
+/** Bubbles default on: snapshots persisted before the preference read as on. */
+export function bubblesOf(state: unknown): boolean {
+  if (state && typeof state === 'object' && 'bubbles' in state) {
+    return (state as { bubbles?: unknown }).bubbles !== false;
+  }
+  return true;
+}
+
 export function autoFoldFromIntensity(intensity: FoldIntensity): boolean {
   return intensity !== 0;
 }

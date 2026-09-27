@@ -43,6 +43,7 @@ export interface ReaderInjected {
     getSnapshot: () => {
       deliverableOpenMode?: import('./open-file.js').DeliverableOpenMode;
       frostedGlass?: boolean;
+      bubbles?: boolean;
       foldIntensity?: import('./fold-intensity.js').FoldIntensity;
       autoFold?: boolean;
       processOnly?: boolean;
@@ -52,6 +53,7 @@ export interface ReaderInjected {
       setFoldIntensity?: (value: import('./fold-intensity.js').FoldIntensity) => void;
       setAutoFold?: (value: boolean) => void;
       setFrostedGlass?: (value: boolean) => void;
+      setBubbles?: (value: boolean) => void;
       setDeliverableOpenMode?: (value: import('./open-file.js').DeliverableOpenMode) => void;
     };
   };

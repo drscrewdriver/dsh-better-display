@@ -5,6 +5,7 @@ import { type SkillStatusProbe } from './skill-status.js';
 export interface ReaderPrefsSnapshot {
     deliverableOpenMode?: DeliverableOpenMode;
     frostedGlass?: boolean;
+    bubbles?: boolean;
     foldIntensity?: FoldIntensity;
     autoFold?: boolean;
     processOnly?: boolean;
@@ -15,6 +16,7 @@ export interface OpenPrefs {
     actions: {
         setDeliverableOpenMode: (value: DeliverableOpenMode) => void;
         setFrostedGlass: (value: boolean) => void;
+        setBubbles?: (value: boolean) => void;
         setFoldIntensity?: (value: FoldIntensity) => void;
         setAutoFold?: (value: boolean) => void;
     };
