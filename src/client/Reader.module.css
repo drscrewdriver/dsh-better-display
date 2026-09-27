@@ -690,3 +690,25 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+/* Reasoning shares the answer's translucent plate. The reasoning card's own
+   base style is the opaque module-platform layer, and its flat state
+   ([data-overflow=false][data-expanded=false]) drops the plate entirely —
+   both put the transcript straight onto skinned wallpapers. Under the same
+   bubbles switch it gets the answer bubble's translucent layer-1 plate in
+   every state; glass mode adds the same frosted blur. These rules sit after
+   the flat rule with equal specificity, so source order settles the
+   background/border/radius; the flat-state paddings need the higher-specificity
+   rules below because the flat look zeroes them for a plate-less layout. */
+.root[data-reader-bubbles=on] .reasonCard {
+  background: var(--dsw-alias-bg-layer-1, rgba(127, 127, 127, .08));
+  border-color: var(--dsw-alias-border-l2, rgba(128, 128, 128, .22));
+  border-radius: 16px;
+}
+.root[data-reader-bubbles=on][data-reader-glass] .reasonCard {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.root[data-reader-bubbles=on] .reasonCard[data-overflow=false][data-expanded=false] { padding-bottom: 10px; }
+.root[data-reader-bubbles=on] .reasonCard[data-overflow=false][data-expanded=false] .reasonHeading { padding: 10px 16px 0; }
+.root[data-reader-bubbles=on] .reasonCard[data-overflow=false][data-expanded=false] .reasonText { padding: 8px 16px 0; }

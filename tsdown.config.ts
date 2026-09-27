@@ -21,7 +21,7 @@ const adapter = existsSync(vendored) ? vendored : resolveHarnessAdapter();
 if (!existsSync(adapter)) throw new Error('externalClientBundle adapter is missing.');
 const { externalClientBundle } = await import(pathToFileURL(adapter).href);
 
-const bundle = externalClientBundle('dsh-better-display', ['src/dsh-better-display.ts'], {
+const bundle = externalClientBundle('@drscrewdriver/dsh-better-display', ['src/dsh-better-display.ts'], {
   clientEntry: 'src/client/index.tsx',
 }) as UserConfig[];
 
@@ -41,7 +41,7 @@ const portableOutput: TsdownPlugin = {
 };
 
 export default bundle.map((config) => {
-  if (config.name !== 'dsh-better-display/client') return config;
+  if (config.name !== '@drscrewdriver/dsh-better-display/client') return config;
   const plugins = Array.isArray(config.plugins)
     ? config.plugins
     : config.plugins === undefined
