@@ -128,6 +128,12 @@ function clientConfig(id, entry) {
 
 export function externalClientBundle(id, entries, { clientEntry } = {}) {
   const configs = []
+  // Windows resolves relative ids to drive-letter absolute paths, which the
+  // /^[./]/ probe below would classify as external — that shipped a server
+  // entry importing "./skill-roots.ts" from a package without it. Accept
+  // Win32 absolute paths as in-module specifiers so hosts stay external and
+  // relative modules always bundle, on every platform.
+  const IN_MODULE = /^[./]|^[A-Za-z]:[\\/]/
   if (entries.length > 0) configs.push({
     name: id,
     entry: Object.fromEntries(entries.map(e => [basename(e).replace(/\.(ts|tsx|js|mjs)$/, ''), e])),
@@ -138,8 +144,8 @@ export function externalClientBundle(id, entries, { clientEntry } = {}) {
     clean: false,
     dts: false,
     deps: {
-      neverBundle: (specifier) => !/^[./]/.test(specifier),
-      alwaysBundle: (specifier) => /^[./]/.test(specifier),
+      neverBundle: (specifier) => !IN_MODULE.test(specifier),
+      alwaysBundle: (specifier) => IN_MODULE.test(specifier),
     },
     outputOptions: { entryFileNames: '[name].js' },
   })
