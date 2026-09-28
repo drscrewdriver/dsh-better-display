@@ -17,7 +17,7 @@ github:aa2246740/dsh-better-display#v0.3.3
 ### Web CLI
 
 ```sh
-dsh plugin --profile web add github:aa2246740/dsh-better-display#v0.3.3
+dsh plugin --profile web add github:drscrewdriver/dsh-better-display
 ```
 
 这条官方 CLI 命令只写入 `web` profile，不能修改 Desktop App 的 profile。对于已经运行的 Web Host，请重新打开该 Host 一次，再刷新网页；插件 bundle 会在启动时读取。
@@ -46,6 +46,7 @@ dsh plugin --profile web remove dsh-better-display
 ## 开发
 
 ```sh
+pnpm install
 npm test
 npm run typecheck
 ```

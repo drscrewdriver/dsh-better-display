@@ -17,7 +17,7 @@ The desktop plugin manager owns the Desktop profile and its bundled package mana
 ### Web CLI
 
 ```sh
-dsh plugin --profile web add github:aa2246740/dsh-better-display#v0.3.3
+dsh plugin --profile web add github:drscrewdriver/dsh-better-display
 ```
 
 This official CLI command writes only the `web` profile; it cannot modify the Desktop App profile. For an already-running Web Host, reopen that Host once and reload the page because bundles are read at boot.
@@ -46,6 +46,7 @@ dsh plugin --profile web remove dsh-better-display
 ## Develop
 
 ```sh
+pnpm install
 npm test
 npm run typecheck
 ```
