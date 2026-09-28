@@ -189,7 +189,7 @@ const AssistantNode = memo(function AssistantNode({ useChat, nodeKey, boundary, 
   })}</>;
 });
 
-const MainNode = memo(function MainNode({ useChat, nodeKey, boundary, pinned, processOpen = false, ...render }: SeatProps) {
+const MainNode = memo(function MainNode({ useChat, nodeKey, boundary: _boundary, pinned: _pinned, processOpen: _processOpen = false, ...render }: SeatProps) {
   const node = useChat(snapshot => snapshot.nodes.get(nodeKey));
   if (!node || node.visibility === 'hidden') return null;
   if (isNode(node, 'user') || isNode(node, 'steering')) {
@@ -272,7 +272,7 @@ function subagentCount(snapshot: { nodes: { get(key: string): ChatConversationVi
   return 0;
 }
 
-function GroupStatus({ group, sessionId, useChat, pending, motion }: Pick<ReaderProps, 'sessionId' | 'useChat'> & { group: ReaderGroup; motion: boolean; pending: { kind?: string } | undefined }) {
+function GroupStatus({ group, sessionId: _sessionId, useChat, pending, motion }: Pick<ReaderProps, 'sessionId' | 'useChat'> & { group: ReaderGroup; motion: boolean; pending: { kind?: string } | undefined }) {
   const text = useChat(snapshot => {
     const turn = group.turn === null ? undefined : snapshot.timeline.turns.get(group.turn);
     if (turn?.status === 'closed') {
